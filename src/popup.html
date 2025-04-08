@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta name="author" content="Francesco Varotto">
+ <meta name="description" content="ProxySwitcher extension by @francevarotz98">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 15px;
+      min-width: 250px;
+    }
+    h3 {
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .proxy-option {
+      margin: 8px 0;
+    }
+    .status {
+      margin-top: 12px;
+      font-size: 0.9em;
+      color: #555;
+    }
+    button {
+      width: 100%;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h3>
+    Proxy Switcher
+  </h3>
+
+  <div class="proxy-option">
+    <input type="radio" name="proxy" id="none" value="none">
+    <label for="none">No Proxy</label>
+  </div>
+
+  <div class="proxy-option">
+    <input type="radio" name="proxy" id="socks5" value="socks5">
+    <label for="socks5">SOCKS5: 127.0.0.1:9050</label>
+  </div>
+
+  <div class="proxy-option">
+    <input type="radio" name="proxy" id="http" value="http">
+    <label for="http">HTTP: 127.0.0.1:8080</label>
+  </div>
+
+
+  <button id="apply">Apply</button>
+
+  <div class="status" id="status">Current Proxy: unknown</div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
