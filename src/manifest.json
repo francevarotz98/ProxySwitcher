@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+  "name": "Proxy Switcher",
+  "version": "1.0",
+  "description": "Easily switch between proxy settings",
+  "permissions": [
+    "proxy",
+    "storage",
+    "tabs",
+    "<all_urls>"
+  ],
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "incognito":"spanning"
+}
