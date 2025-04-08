@@ -1,27 +1,27 @@
-// Set proxy on click and save it
-document.getElementById("apply").addEventListener("click", async () => {
-  const selected = document.querySelector("input[name='proxy']:checked");
-  if (selected) {
-    const proxyType = selected.value;
-    await browser.runtime.sendMessage({ action: "set-proxy", proxyType });
-    await browser.storage.local.set({ lastProxy: proxyType });
-    updateStatus(proxyType);
-  }
+const proxySelect = document.getElementById("proxySelect");
+const statusText = document.getElementById("status");
+const statusDot = document.getElementById("statusDot");
+
+// On Apply button click
+document.getElementById("applyBtn").addEventListener("click", async () => {
+  const selectedProxy = proxySelect.value;
+  await browser.runtime.sendMessage({ action: "set-proxy", proxyType: selectedProxy });
+  await browser.storage.local.set({ lastProxy: selectedProxy });
+  updateStatus(selectedProxy);
 });
 
-// On popup open: load last used proxy and update UI
+// On popup open: restore saved proxy setting
 document.addEventListener("DOMContentLoaded", async () => {
   const { lastProxy } = await browser.storage.local.get("lastProxy");
-
-  if (lastProxy) {
-    const radio = document.querySelector(`input[value="${lastProxy}"]`);
-    if (radio) radio.checked = true;
-    updateStatus(lastProxy);
-  } else {
-    updateStatus("unknown");
-  }
+  const active = lastProxy || "none";
+  proxySelect.value = active;
+  updateStatus(active);
 });
 
-function updateStatus(proxy) {
-  document.getElementById("status").textContent = `Current Proxy: ${proxy}`;
+function updateStatus(proxyType) {
+  const dot = proxyType === "none" || proxyType === "unknown" ? "gray" : "green";
+  statusText.innerHTML = `
+    <span class="dot ${dot}" id="statusDot"></span>
+    Current Proxy: ${proxyType}
+  `;
 }
