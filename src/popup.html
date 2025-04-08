@@ -3,57 +3,74 @@
 <head>
  <meta name="author" content="Francesco Varotto">
  <meta name="description" content="ProxySwitcher extension by @francevarotz98">
+
   <style>
     body {
       font-family: Arial, sans-serif;
       padding: 15px;
-      min-width: 250px;
+      min-width: 260px;
+      background-color: #f9f9f9;
     }
-    h3 {
+
+    h2 {
       margin-top: 0;
+      font-size: 1.2em;
       display: flex;
       align-items: center;
       gap: 8px;
     }
-    .proxy-option {
-      margin: 8px 0;
+
+    select {
+      width: 100%;
+      padding: 6px;
+      margin-top: 8px;
+      font-size: 0.95em;
     }
-    .status {
-      margin-top: 12px;
-      font-size: 0.9em;
-      color: #555;
-    }
+
     button {
       width: 100%;
-      margin-top: 10px;
+      margin-top: 12px;
+      padding: 6px;
+      font-size: 0.95em;
     }
+
+    .status {
+      margin-top: 14px;
+      font-size: 0.9em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #444;
+    }
+
+    .dot {
+      height: 10px;
+      width: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .dot.green { background-color: #4caf50; }
+    .dot.gray { background-color: #bbb; }
   </style>
 </head>
 <body>
-  <h3>
-    Proxy Switcher
-  </h3>
+  <h2>Proxy Switcher</h2>
 
-  <div class="proxy-option">
-    <input type="radio" name="proxy" id="none" value="none">
-    <label for="none">No Proxy</label>
+  <select id="proxySelect">
+    <option value="none">No Proxy</option>
+    <option value="http">HTTP: 127.0.0.1:8080</option>
+    <option value="socks5">SOCKS5: 127.0.0.1:9050</option>
+  </select>
+
+  <button id="applyBtn">Apply Proxy</button>
+
+  <div class="status" id="status">
+    <span class="dot gray" id="statusDot"></span>
+    Current Proxy: unknown
   </div>
-
-  <div class="proxy-option">
-    <input type="radio" name="proxy" id="socks5" value="socks5">
-    <label for="socks5">SOCKS5: 127.0.0.1:9050</label>
-  </div>
-
-  <div class="proxy-option">
-    <input type="radio" name="proxy" id="http" value="http">
-    <label for="http">HTTP: 127.0.0.1:8080</label>
-  </div>
-
-
-  <button id="apply">Apply</button>
-
-  <div class="status" id="status">Current Proxy: unknown</div>
 
   <script src="popup.js"></script>
 </body>
 </html>
+
