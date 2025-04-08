@@ -15,5 +15,7 @@
   "background": {
     "scripts": ["background.js"]
   },
-  "incognito":"spanning"
+  "incognito":"spanning",
+  "author": "Francesco Varotto",
+  "homepage_url": "https://github.com/francevarotz98"
 }
